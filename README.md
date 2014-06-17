@@ -1,4 +1,4 @@
-# Rack::DisableCssAnimations
+# Rack::DisableCSSAnimations
 
 Rack middleware to disable CSS animations sitewide. Useful for making acceptance tests quicker and more deterministic.
 
