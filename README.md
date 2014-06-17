@@ -1,6 +1,6 @@
 # Rack::DisableCssAnimations
 
-TODO: Write a gem description
+Rack middleware to disable CSS animations sitewide. Useful for making acceptance tests quicker and more deterministic.
 
 ## Installation
 
@@ -18,11 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If using Rails, add the middleware to your test environment in `config/environments/test.rb`:
+
+```ruby
+  config.middleware.use Rack::DisableCSSAnimations
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/rack-disable_css_animations/fork )
+1. Fork it ( https://github.com/botandrose/rack-disable_css_animations/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

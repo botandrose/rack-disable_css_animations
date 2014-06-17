@@ -1,5 +1,5 @@
 module Rack
-  module DisableCssAnimations
-    VERSION = "0.0.1"
+  class DisableCSSAnimations
+    VERSION = "0.1.0"
   end
 end
