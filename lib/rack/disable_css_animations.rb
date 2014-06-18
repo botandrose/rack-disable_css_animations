@@ -26,7 +26,16 @@ module Rack
     end
 
     def inject response
-      markup = %(<style>* { transition-duration: 0 !important; }</style>)
+      markup = <<-CSS
+        <style>
+          * {
+            transition-duration: 0 !important;
+            -webkit-transition-duration: 0 !important;
+            -moz-transition-duration: 0 !important;
+            -o-transitio-duration: 0 !important;
+          }
+        </style>
+      CSS
       response.gsub(%r{</head>}, "#{markup}</head>")
     end
   end
