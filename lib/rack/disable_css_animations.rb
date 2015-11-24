@@ -29,10 +29,10 @@ module Rack
       markup = <<-CSS
         <style>
           * {
-            transition-duration: 0 !important;
-            -webkit-transition-duration: 0 !important;
-            -moz-transition-duration: 0 !important;
-            -o-transitio-duration: 0 !important;
+            transition-duration: 0s !important;
+            -webkit-transition-duration: 0s !important;
+            -moz-transition-duration: 0s !important;
+            -o-transitio-duration: 0s !important;
           }
         </style>
       CSS
