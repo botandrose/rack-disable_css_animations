@@ -33,6 +33,7 @@ module Rack
             animation-duration: 0.01s !important;
             transition-delay: 0s !important;
             transition-duration: 0.01s !important;
+            scroll-behavior: auto !important;
           }
         </style>
       CSS
