@@ -29,20 +29,14 @@ module Rack
       markup = <<-CSS
         <style>
           * {
-            #{with_prefixes "animation-delay: 0s !important;"}
-            #{with_prefixes "animation-duration: 0.01s !important;"}
-            #{with_prefixes "transition-delay: 0s !important;"}
-            #{with_prefixes "transition-duration: 0.01s !important;"}
+            animation-delay: 0s !important;
+            animation-duration: 0.01s !important;
+            transition-delay: 0s !important;
+            transition-duration: 0.01s !important;
           }
         </style>
       CSS
       response.gsub(%r{</head>}, "#{markup}</head>")
-    end
-
-    def with_prefixes rule, prefixes = ["", "-webkit-", "-moz-", "-o-"]
-      prefixes.map do |prefix|
-        prefix + rule
-      end.join("\n")
     end
   end
 end
