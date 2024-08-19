@@ -8,21 +8,9 @@ Add this line to your application's Gemfile:
 
     gem 'rack-disable_css_animations'
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rack-disable_css_animations
-
 ## Usage
 
-If using Rails, add the middleware to your test environment in `config/environments/test.rb`:
-
-```ruby
-  config.middleware.use Rack::DisableCSSAnimations
-```
+If using Rails, this will be automatically added to your middleware stack when required after Rails, so only require it in the environments you want it in.
 
 ## Contributing
 

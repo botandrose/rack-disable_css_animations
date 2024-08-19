@@ -2,6 +2,12 @@ require "rack/disable_css_animations/version"
 
 module Rack
   class DisableCSSAnimations
+    if defined?(Rails)
+      class Rails < Rails::Railtie
+        config.app_middleware.use DisableCSSAnimations
+      end
+    end
+
     def initialize app
       @app = app
     end
