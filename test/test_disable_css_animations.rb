@@ -81,4 +81,30 @@ class TestDisableCSSAnimations < Minitest::Test
 
     assert_includes last_response.body, %(<style nonce="lower1">)
   end
+
+  def test_report_only_csp_header_nonce_is_used_when_enforcing_header_absent
+    self.response_headers["Content-Security-Policy-Report-Only"] = "style-src 'nonce-reportonly1'"
+
+    get "/"
+
+    assert_includes last_response.body, %(<style nonce="reportonly1">)
+  end
+
+  def test_lowercase_report_only_csp_header_is_also_recognized
+    self.response_headers = { "Content-Type" => "text/html", "content-security-policy-report-only" => "style-src 'nonce-reportonly2'" }
+
+    get "/"
+
+    assert_includes last_response.body, %(<style nonce="reportonly2">)
+  end
+
+  def test_enforcing_header_takes_precedence_over_report_only
+    self.response_headers["Content-Security-Policy"] = "style-src 'nonce-enforced'"
+    self.response_headers["Content-Security-Policy-Report-Only"] = "style-src 'nonce-reportonly'"
+
+    get "/"
+
+    assert_includes last_response.body, %(<style nonce="enforced">)
+    refute_includes last_response.body, "reportonly"
+  end
 end

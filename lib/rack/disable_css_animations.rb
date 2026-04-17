@@ -4,7 +4,11 @@ module Rack
   class DisableCSSAnimations
     if defined?(Rails)
       class Rails < Rails::Railtie
-        config.app_middleware.use DisableCSSAnimations
+        initializer "rack-disable_css_animations.insert_middleware" do |app|
+          app.middleware.insert_before ActionDispatch::ContentSecurityPolicy::Middleware, DisableCSSAnimations
+        rescue RuntimeError
+          app.middleware.use DisableCSSAnimations
+        end
       end
     end
 
@@ -34,7 +38,11 @@ module Rack
     end
 
     def csp_header
-      @headers["Content-Security-Policy"] || @headers["content-security-policy"] || ""
+      @headers["Content-Security-Policy"] ||
+        @headers["content-security-policy"] ||
+        @headers["Content-Security-Policy-Report-Only"] ||
+        @headers["content-security-policy-report-only"] ||
+        ""
     end
 
     def directive_nonces
